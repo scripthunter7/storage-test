@@ -1,0 +1,16 @@
+{
+  "name": "sample-extension",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "watch": "esbuild --watch --bundle background/src/background.js --outfile=background/dist/background.js"
+  },
+  "keywords": [],
+  "author": "",
+  "devDependencies": {
+    "esbuild": "^0.19.12"
+  },
+  "dependencies": {
+    "idb": "^8.0.0"
+  }
+}
