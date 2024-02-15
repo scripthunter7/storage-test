@@ -25,6 +25,8 @@ async function openDB() {
 chrome.runtime.onInstalled.addListener(async function () {
     console.log("Extension Installed");
 
+    await chrome.storage.local.set({ foo: "bar" });
+
     // open the database
     const db = await openDB();
 
@@ -79,6 +81,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     (async () => {
         if (message?.type == "incrementCount") {
             console.log("Incrementing count");
+
+            // try to get foo from browser.storage.local
+            await chrome.storage.local.get("foo", (result) => {
+                console.log("Value from browser.storage.local:", result.foo);
+            });
 
             const db = await openDB();
             let count = await db.get(IDB_STORE_NAME, "count");
